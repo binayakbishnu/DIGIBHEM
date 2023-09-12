@@ -8,6 +8,8 @@ export const StateProvider = ({ children }) => {
         date: "",
         days: 0,
         persons: 0,
+        roomType: "delux",
+        amenities: { ac: false, locker: false },
     });
 
     return (
