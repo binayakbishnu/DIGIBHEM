@@ -28,6 +28,7 @@ function RoomInfo() {
                         placeholder=''
                         className='px-4 py-2 bg-[rgba(0,0,200,0.5)] rounded border'
                     >
+                        {/* <option disabled selected value> -- select an option -- </option> */}
                         <option value="delux">Delux</option>
                         <option value="suite">Suite</option>
                     </select>
