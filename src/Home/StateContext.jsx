@@ -10,6 +10,9 @@ export const StateProvider = ({ children }) => {
         persons: 0,
         roomType: "delux",
         amenities: { ac: false, locker: false },
+        roomCost : 2500,
+        amenitiesCost : 0,
+        totalCost : 2500,
     });
 
     return (

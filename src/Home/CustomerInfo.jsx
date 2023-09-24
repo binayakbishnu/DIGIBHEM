@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useStateContext } from './StateContext';
 
@@ -11,6 +11,30 @@ function CustomerInfo() {
         const { name, value } = e.target;
         setSharedState({ ...sharedState, [name]: value });
     }
+
+    const daysChange = (e) => {
+        const { name, value } = e.target;
+
+        let cost = 0;
+        if (sharedState.persons > 2) {
+            cost = (sharedState.persons - 2) * 1000 * value;
+        }
+        setSharedState({ ...sharedState, [name]: value, totalCost: cost });
+    }
+
+    const personsChange = (e) => {
+        const { name, value } = e.target;
+
+        let cost = 0;
+        if (value > 2) {
+            cost = (value - 2) * 1000 * sharedState.days;
+        }
+        setSharedState({ ...sharedState, [name]: value, totalCost: cost });
+    }
+
+    useEffect(() => {
+        console.log(sharedState)
+    }, [sharedState]);
 
     return (
         <div className='bg-[rgba(0,0,100,0.8)] p-8 rounded'>
@@ -40,7 +64,7 @@ function CustomerInfo() {
                     <label htmlFor="days">Number of days</label>
                     <input
                         value={sharedState.days}
-                        onChange={(e) => handleChange(e)}
+                        onChange={(e) => daysChange(e)}
                         type="number" name="days" id="days"
                         placeholder=''
                         className='px-4 py-2 bg-[rgba(0,0,200,0.5)] rounded border'
@@ -50,7 +74,7 @@ function CustomerInfo() {
                     <label htmlFor="persons">Number of persons</label>
                     <input
                         value={sharedState.persons}
-                        onChange={(e) => handleChange(e)}
+                        onChange={(e) => personsChange(e)}
                         type="number" name="persons" id="persons"
                         placeholder=''
                         className='px-4 py-2 bg-[rgba(0,0,200,0.5)] rounded border'
