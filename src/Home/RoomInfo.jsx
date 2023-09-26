@@ -7,19 +7,17 @@ function RoomInfo() {
 
     const handleRoomChange = (e) => {
         const value = e.target.value;
-        let totalCost = sharedState.totalCost;
         let cost = 0;
         if (value === "delux") cost = 2500;
         if (value === "suite") cost = 4000;
 
-        setSharedState({ ...sharedState, roomType: value, roomCost: cost, totalCost: totalCost + cost });
+        setSharedState({ ...sharedState, roomType: value, roomCost: cost });
     }
 
     const handleCheckBox = (e) => {
         const { name } = e.target;
         const checkedState = e.target.checked;
 
-        let totalCost = sharedState.totalCost;
         let cost = 0;
         if (name === 'ac') cost = 1000;
         else if (name === 'locker') cost = 300;
@@ -31,12 +29,13 @@ function RoomInfo() {
         }
 
 
-        setSharedState({ ...sharedState, amenitiesCost: cost, totalCost: totalCost + cost, amenities: { ...sharedState.amenities, [name]: checkedState } });
+        setSharedState({ ...sharedState, amenitiesCost: cost, amenities: { ...sharedState.amenities, [name]: checkedState } });
     }
 
-    useEffect(() => {
-        console.log(sharedState)
-    }, [sharedState]);
+    const submitRoomInfo = () => {
+        const total = sharedState.totalCost + sharedState.roomCost + sharedState.amenitiesCost;
+        setSharedState({ ...sharedState, totalCost: total });
+    }
 
     return (
         <div className='bg-[rgba(0,0,100,0.8)] p-8 rounded'>
@@ -78,7 +77,7 @@ function RoomInfo() {
 
             <div className='mt-5 flex flex-row justify-center gap-2'>
                 <Link to="/customerInfo" className='flex flex-row items-center gap-2 bg-[rgba(0,0,100,0.8)] rounded px-4 py-2'>Previous</Link>
-                <Link to="/totalCost" className='flex flex-row items-center gap-2 bg-[rgba(0,0,100,0.8)] rounded px-4 py-2'>Next</Link>
+                <Link onClick={submitRoomInfo} to="/totalCost" className='flex flex-row items-center gap-2 bg-[rgba(0,0,100,0.8)] rounded px-4 py-2'>Next</Link>
             </div>
 
             {/* <p>{sharedState.roomType} {`${sharedState.amenities.ac}`} {`${sharedState.amenities.locker}`}</p> */}

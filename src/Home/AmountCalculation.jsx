@@ -18,10 +18,10 @@ function AmountCalculation() {
                     <p className='col-span-2'>Amenities details</p>
                     <hr className='col-span-2' />
                     {!sharedState.amenities.ac && !sharedState.amenities.locker && <p className='col-span-2'>N/A</p>}
-                    <p>{sharedState.amenities.ac ? "AC" : ""}</p>
-                    <p className='text-right'>{sharedState.amenities.ac ? 1000 : ""}</p>
-                    <p>{sharedState.amenities.locker ? "Locker" : ""}</p>
-                    <p className='text-right'>{sharedState.amenities.locker ? 300 : ""}</p>
+                    <p className='text-[0.8em]'>{sharedState.amenities.ac ? "AC" : ""}</p>
+                    <p className='text-right text-[0.8em]'>{sharedState.amenities.ac ? 1000 : ""}</p>
+                    <p className='text-[0.8em]'>{sharedState.amenities.locker ? "Locker" : ""}</p>
+                    <p className='text-right text-[0.8em]'>{sharedState.amenities.locker ? 300 : ""}</p>
                     {(sharedState.amenities.ac || sharedState.amenities.locker) &&
                         <p>Subtotal</p>
                     }
@@ -38,7 +38,7 @@ function AmountCalculation() {
                         <p>Subtotal</p>
                     }
                     {sharedState.persons > 2 &&
-                        <p className='text-right'>{(sharedState.persons-2)*1000}</p>
+                        <p className='text-right'>{sharedState.extraPersonCost}</p>
                     }
                 </div>
                 <div className='grid grid-cols-2 text-left'>

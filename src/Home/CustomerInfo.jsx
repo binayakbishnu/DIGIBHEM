@@ -19,7 +19,7 @@ function CustomerInfo() {
         if (sharedState.persons > 2) {
             cost = (sharedState.persons - 2) * 1000 * value;
         }
-        setSharedState({ ...sharedState, [name]: value, totalCost: cost });
+        setSharedState({ ...sharedState, [name]: value, extraPersonCost: cost });
     }
 
     const personsChange = (e) => {
@@ -29,12 +29,12 @@ function CustomerInfo() {
         if (value > 2) {
             cost = (value - 2) * 1000 * sharedState.days;
         }
-        setSharedState({ ...sharedState, [name]: value, totalCost: cost });
+        setSharedState({ ...sharedState, [name]: value, extraPersonCost: cost });
     }
 
-    useEffect(() => {
-        console.log(sharedState)
-    }, [sharedState]);
+    const submitCustomerInfo = () => {
+        setSharedState({ ...sharedState, totalCost: sharedState.extraPersonCost })
+    }
 
     return (
         <div className='bg-[rgba(0,0,100,0.8)] p-8 rounded'>
@@ -85,7 +85,7 @@ function CustomerInfo() {
 
             <div className='mt-5 flex flex-row justify-center gap-2'>
                 <Link to="/" className='flex flex-row items-center gap-2 bg-[rgba(0,0,100,0.8)] rounded px-4 py-2'><IoIosArrowDropleft /> Previous</Link>
-                <Link to="/roomInfo" className='flex flex-row items-center gap-2 bg-[rgba(0,0,100,0.8)] rounded px-4 py-2'>Next<IoIosArrowDropright /></Link>
+                <Link onClick={submitCustomerInfo} to="/roomInfo" className='flex flex-row items-center gap-2 bg-[rgba(0,0,100,0.8)] rounded px-4 py-2'>Next<IoIosArrowDropright /></Link>
             </div>
 
             {/* <p>{sharedState.name} {sharedState.date} {sharedState.days} {sharedState.persons}</p> */}
