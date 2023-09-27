@@ -12,6 +12,7 @@ export const StateProvider = ({ children }) => {
         amenities: { ac: false, locker: false },
         roomCost : 2500,
         amenitiesCost : 0,
+        advanceAmount : 0,
         totalCost : 0,
     });
 
