@@ -6,6 +6,7 @@ import StartReg from './Home/StartReg';
 import CustomerInfo from './Home/CustomerInfo';
 import RoomInfo from './Home/RoomInfo';
 import AmountCalculation from './Home/AmountCalculation';
+import OrderSummary from './Home/OrderSummary';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/customerInfo" element={<CustomerInfo />} />
             <Route path="/roomInfo" element={<RoomInfo />} />
             <Route path="/totalCost" element={<AmountCalculation />} />
+            <Route path="/ordersummary" element={<OrderSummary />} />
           </Route>
         </Routes>
       </Router>
